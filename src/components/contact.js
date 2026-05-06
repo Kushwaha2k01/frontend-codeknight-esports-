@@ -26,7 +26,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const API_URL = process.env.REACT_APP_API_URL || '';
+      const API_URL = 'https://backend-codeknight-esports-i6i5.vercel.app';
       const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
