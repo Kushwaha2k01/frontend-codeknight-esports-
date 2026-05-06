@@ -46,7 +46,8 @@ const Quotation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/quotation', {
+      const API_URL = process.env.REACT_APP_API_URL || '';
+      const response = await fetch(`${API_URL}/api/quotation`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
