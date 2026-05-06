@@ -25,8 +25,12 @@ const Quotation = () => {
     'Game Testing',
     'VFX & Animation',
     'Audio Engineering',
-    'Server Architecture',
-    'E-sports Consulting'
+    'UI/UX Design',
+    'E-sports Consulting',
+    'Web Development',
+    'Mobile App Development',
+    'Meta Human Character',
+    'Game Development',
   ];
 
   const handleInputChange = (e) => {
@@ -87,7 +91,7 @@ const Quotation = () => {
       <Link to="/" className="top-back-link">
         ← Back to Home
       </Link>
-      
+
       <div className="quotation-container">
         <div className="quotation-header">
           <h1 className="quotation-title">Request a <span className="highlight">Quotation</span></h1>
@@ -103,7 +107,7 @@ const Quotation = () => {
               <input type="text" name="name" required value={formData.name} onChange={handleInputChange} />
               <label>Full Name</label>
             </div>
-            
+
             <div className="input-group">
               <input type="email" name="email" required value={formData.email} onChange={handleInputChange} />
               <label>Email Address</label>
@@ -129,8 +133,8 @@ const Quotation = () => {
             <h3>Select Required Services</h3>
             <div className="quotation-services-grid">
               {availableServices.map(service => (
-                <div 
-                  key={service} 
+                <div
+                  key={service}
                   className={`service-item ${formData.services.includes(service) ? 'active' : ''}`}
                   onClick={() => toggleService(service)}
                 >
@@ -146,10 +150,10 @@ const Quotation = () => {
             <div className="budget-options">
               {['Under 50k', '50k-100k', '100k-500k', '500k+'].map(range => (
                 <label key={range} className="budget-radio">
-                  <input 
-                    type="radio" 
-                    name="budget" 
-                    value={range} 
+                  <input
+                    type="radio"
+                    name="budget"
+                    value={range}
                     checked={formData.budget === range}
                     onChange={handleInputChange}
                   />
