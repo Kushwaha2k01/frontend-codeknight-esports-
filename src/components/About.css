@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+.about-container {
+  background-color: #ffffff;
+  padding: 60px 20px;
+  min-height: auto;
+}
+
+.about-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.about-content {
+  flex: 1;
+  text-align: left;
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+@media (min-width: 1200px) {
+  .about-image img {
+    max-height: 550px;
+  }
+}
+
+.about-title {
+  color: #000000;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  animation: fadeInLeft 0.8s ease-out;
+  position: relative;
+  display: inline-block;
+}
+
+.about-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #ff8c00;
+  animation: fadeInLeft 0.8s ease-out 0.3s both;
+}
+
+.about-desc {
+  color: #000000;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  animation: fadeInLeft 0.8s ease-out 0.2s both;
+  padding-top: 20px;
+}
+
+.glass-button {
+  padding: 15px 35px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(255, 107, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.glass-button:hover::before {
+  left: 100%;
+}
+
+.glass-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255, 107, 0, 0.2);
+  border-color: rgba(255, 107, 0, 0.5);
+}
+
+.about-extra {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 2px solid #ff8c00;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.extra-section {
+  margin-bottom: 30px;
+}
+
+.extra-title {
+  color: #000000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  animation: fadeInLeft 0.8s ease-out;
+  position: relative;
+  display: inline-block;
+}
+
+.extra-title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #ff8c00;
+  animation: fadeInLeft 0.8s ease-out 0.2s both;
+}
+
+.extra-desc {
+  color: #000000;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  animation: fadeInLeft 0.8s ease-out 0.1s both;
+  padding-left: 0;
+}
+
+.extra-list {
+  color: #000000;
+  font-size: 1.1rem;
+  line-height: 2;
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+  animation: fadeInLeft 0.8s ease-out 0.2s both;
+}
+
+.extra-list li {
+  margin-bottom: 8px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .about-wrapper {
+    gap: 40px;
+  }
+  .about-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 60px 20px;
+  }
+
+  .about-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .about-content {
+    text-align: center;
+  }
+
+  .about-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .about-image {
+    justify-content: center;
+    order: -1;
+  }
+
+  .about-image img {
+    max-height: 350px;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-desc {
+    font-size: 1rem;
+  }
+
+  .glass-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .extra-title {
+    font-size: 1.3rem;
+  }
+  
+  .extra-desc,
+  .extra-list {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.8rem;
+  }
+  .about-image img {
+    max-height: 250px;
+  }
+}

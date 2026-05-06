@@ -1,0 +1,21 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cursorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#ffb347" />
+      <stop offset="100%" stop-color="#ff5e00" />
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="1" dy="3" stdDeviation="3" flood-color="#ff5e00" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Main Pointer Arrow -->
+  <path d="M10 10 L22 36 L25 25 L36 22 L10 10Z" fill="url(#cursorGrad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" filter="url(#glow)"/>
+  
+  <!-- Floating Fluid Drops (similar to the reference image) -->
+  <circle cx="30" cy="34" r="4.5" fill="#ff6b00" />
+  <circle cx="23" cy="41" r="3" fill="#ffb347" />
+  <circle cx="38" cy="28" r="2.5" fill="#ffffff" />
+  <circle cx="34" cy="42" r="1.5" fill="#ff5e00" />
+</svg>
