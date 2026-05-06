@@ -37,7 +37,7 @@ const Career = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const API_URL = 'https://backend-codeknight-esports-i6i5.vercel.app';
+      const API_URL = process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app';
       const response = await fetch(`${API_URL}/api/career`, {
         method: 'POST',
         headers: {
@@ -50,11 +50,12 @@ const Career = () => {
         setIsSubmitted(true);
         window.scrollTo(0, 0);
       } else {
-        alert('Failed to submit application. Please try again.');
+        const errorData = await response.json().catch(() => ({}));
+        alert(`Submission Failed: ${errorData.message || response.statusText}`);
       }
     } catch (error) {
       console.error('Error submitting application:', error);
-      alert('An error occurred. Please try again later.');
+      alert('Network error: Could not reach the server.');
     }
   };
 
@@ -78,7 +79,7 @@ const Career = () => {
       <Link to="/" className="top-back-link">
         ← Back to Home
       </Link>
-      
+
       <div className="career-container">
         <div className="career-header">
           <h1 className="career-title">Join Our <span className="highlight">Elite Team</span></h1>
@@ -93,7 +94,7 @@ const Career = () => {
               <input type="text" name="name" required value={formData.name} onChange={handleInputChange} />
               <label>Full Name</label>
             </div>
-            
+
             <div className="input-group">
               <input type="email" name="email" required value={formData.email} onChange={handleInputChange} />
               <label>Email Address</label>

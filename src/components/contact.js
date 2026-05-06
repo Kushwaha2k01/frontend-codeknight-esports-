@@ -26,7 +26,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const API_URL = 'https://backend-codeknight-esports-i6i5.vercel.app';
+      const API_URL = process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app';
       const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
@@ -40,11 +40,12 @@ const Contact = () => {
         setFormData({ name: '', email: '', message: '' });
         alert('Message sent successfully!');
       } else {
-        alert('Failed to send message. Please try again.');
+        const errorData = await response.json().catch(() => ({}));
+        alert(`Failed to send message: ${errorData.message || response.statusText}`);
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('An error occurred. Please try again later.');
+      alert('Network error: Please check your connection.');
     }
   };
 
@@ -100,31 +101,31 @@ const Contact = () => {
           <div className='contact-form-wrapper'>
             <form className='premium-form' onSubmit={handleSubmit}>
               <div className='input-group'>
-                <input 
-                  type='text' 
-                  name='name' 
-                  required 
-                  value={formData.name} 
-                  onChange={handleInputChange} 
+                <input
+                  type='text'
+                  name='name'
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
                 />
                 <label>Full Name</label>
               </div>
               <div className='input-group'>
-                <input 
-                  type='email' 
-                  name='email' 
-                  required 
-                  value={formData.email} 
-                  onChange={handleInputChange} 
+                <input
+                  type='email'
+                  name='email'
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
                 />
                 <label>Email Address</label>
               </div>
               <div className='input-group'>
-                <textarea 
-                  name='message' 
-                  rows='4' 
-                  required 
-                  value={formData.message} 
+                <textarea
+                  name='message'
+                  rows='4'
+                  required
+                  value={formData.message}
                   onChange={handleInputChange}
                 ></textarea>
                 <label>Your Message</label>
