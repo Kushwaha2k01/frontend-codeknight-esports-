@@ -36,8 +36,9 @@ const Career = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : (process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app');
     try {
-      const API_URL = process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app';
+      console.log(`🚀 Sending Career Application to: ${API_URL}/api/career`, formData);
       const response = await fetch(`${API_URL}/api/career`, {
         method: 'POST',
         headers: {
@@ -50,12 +51,12 @@ const Career = () => {
         setIsSubmitted(true);
         window.scrollTo(0, 0);
       } else {
-        const errorData = await response.json().catch(() => ({}));
-        alert(`Submission Failed: ${errorData.message || response.statusText}`);
+        const errorData = await response.json().catch(() => ({ error: 'Unknown server error' }));
+        alert(`Submission Failed: ${errorData.error || errorData.message || response.statusText}${errorData.detail ? ` (${errorData.detail})` : ''}`);
       }
     } catch (error) {
       console.error('Error submitting application:', error);
-      alert('Network error: Could not reach the server.');
+      alert(`Network error: ${error.message}. Ensure the backend is running at ${API_URL}`);
     }
   };
 

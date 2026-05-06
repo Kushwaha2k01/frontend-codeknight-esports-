@@ -25,8 +25,9 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : (process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app');
     try {
-      const API_URL = process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app';
+      console.log(`🚀 Sending Contact Message to: ${API_URL}/api/contact`, formData);
       const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
@@ -40,12 +41,12 @@ const Contact = () => {
         setFormData({ name: '', email: '', message: '' });
         alert('Message sent successfully!');
       } else {
-        const errorData = await response.json().catch(() => ({}));
-        alert(`Failed to send message: ${errorData.message || response.statusText}`);
+        const errorData = await response.json().catch(() => ({ error: 'Unknown server error' }));
+        alert(`Failed to send message: ${errorData.error || errorData.message || response.statusText}${errorData.detail ? ` (${errorData.detail})` : ''}`);
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('Network error: Please check your connection.');
+      alert(`Network error: ${error.message}. Ensure the backend is running at ${API_URL}`);
     }
   };
 

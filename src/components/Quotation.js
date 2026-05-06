@@ -49,9 +49,10 @@ const Quotation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : (process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app');
     try {
       // Use environment variable or a fallback for production
-      const API_URL = process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app';
+      console.log(`🚀 Sending Quotation Request to: ${API_URL}/api/quotation`, formData);
       const response = await fetch(`${API_URL}/api/quotation`, {
         method: 'POST',
         headers: {
@@ -64,12 +65,12 @@ const Quotation = () => {
         setIsSubmitted(true);
         window.scrollTo(0, 0);
       } else {
-        const errorData = await response.json().catch(() => ({}));
-        alert(`Failed to send request: ${errorData.message || response.statusText}`);
+        const errorData = await response.json().catch(() => ({ error: 'Unknown server error' }));
+        alert(`Failed to send request: ${errorData.error || errorData.message || response.statusText}${errorData.detail ? ` (${errorData.detail})` : ''}`);
       }
     } catch (error) {
       console.error('Error sending request:', error);
-      alert('Network error or Backend is down. Please try again later.');
+      alert(`Network error: ${error.message}. Ensure the backend is running at ${API_URL}`);
     }
   };
 
