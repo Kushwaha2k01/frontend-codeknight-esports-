@@ -8,6 +8,8 @@ import About from './components/About';
 import Services from './components/Services';
 import Team from './components/Team';
 import Collab from './components/collab';
+import Gallery from './components/gallery';
+import Testimonial from './components/testimonial';
 import Contact from './components/contact';
 import Footer from './components/footer';
 import Quotation from './components/Quotation';
@@ -25,6 +27,8 @@ const LandingPage = () => (
     <Services />
     <Team />
     <Collab />
+    <Gallery />
+    <Testimonial />
     <Contact />
   </>
 );
