@@ -68,7 +68,12 @@ const Contact = () => {
               </div>
               <div className='info-text'>
                 <h3>Location</h3>
-                <p>Bengaluru, Karnataka, India</p>
+                <p>Office 1: Kanpur Nagar, Uttar Pradesh, India</p>
+                <p>Office 2: Bangalore, Karnataka, India</p>
+                <div className="registration-address-box">
+                  <p className="reg-label">Registration Address:</p>
+                  <p>116/220 Rawatpur Gaon, Kanpur Nagar, Uttar Pradesh - 208019</p>
+                </div>
               </div>
             </div>
             <div className='info-card'>

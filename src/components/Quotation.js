@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Quotation.css';
 
@@ -7,12 +7,15 @@ const Quotation = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const fileInputRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     phone: '',
     message: '',
+    gdd: null,
     budget: '50k-100k',
     services: []
   });
@@ -38,6 +41,10 @@ const Quotation = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    setFormData(prev => ({ ...prev, gdd: e.target.files[0] }));
+  };
+
   const toggleService = (service) => {
     setFormData(prev => {
       const currentServices = prev.services.includes(service)
@@ -50,15 +57,24 @@ const Quotation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:5000' : (process.env.REACT_APP_API_URL || 'https://backend-codeknight-esports-i6i5.vercel.app');
+
+    // Create FormData to handle file upload along with other fields
+    const data = new FormData();
+    Object.keys(formData).forEach(key => {
+      if (key === 'services') {
+        data.append(key, JSON.stringify(formData[key]));
+      } else if (key === 'gdd') {
+        if (formData[key]) data.append(key, formData[key]);
+      } else {
+        data.append(key, formData[key]);
+      }
+    });
+
     try {
-      // Use environment variable or a fallback for production
-      console.log(`🚀 Sending Quotation Request to: ${API_URL}/api/quotation`, formData);
+      console.log(`🚀 Sending Quotation Request to: ${API_URL}/api/quotation`);
       const response = await fetch(`${API_URL}/api/quotation`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: data, // No headers needed, browser sets boundary
       });
 
       if (response.ok) {
@@ -129,6 +145,26 @@ const Quotation = () => {
             <div className="input-group full-width">
               <textarea name="message" rows="1" required value={formData.message} onChange={handleInputChange}></textarea>
               <label>Tell us about your project vision</label>
+            </div>
+
+            <div className="input-group full-width">
+              <input
+                type="file"
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+                accept=".pdf,.doc,.docx"
+              />
+              <button type="button" className="premium-btn outline" onClick={() => fileInputRef.current.click()}>
+                {!formData.gdd && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                )}
+                {formData.gdd ? `✓ ${formData.gdd.name}` : 'Upload GDD Document (Optional)'}
+              </button>
             </div>
           </div>
 

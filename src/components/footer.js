@@ -81,8 +81,16 @@ const Footer = () => {
           <h4 className='footer-heading'>Contact</h4>
           <ul className='footer-contact-list'>
             <li>
-              <span className='footer-contact-label'>Location</span>
-              <span className='footer-contact-value'>Bengaluru, Karnataka, India</span>
+              <span className='footer-contact-label'>Office 1</span>
+              <span className='footer-contact-value'>Kanpur Nagar, Uttar Pradesh, India</span>
+            </li>
+            <li>
+              <span className='footer-contact-label'>Office 2</span>
+              <span className='footer-contact-value'>Bangalore, Karnataka, India</span>
+            </li>
+            <li>
+              <span className='footer-contact-label'>Registration Address</span>
+              <span className='footer-contact-value'>116/220 Rawatpur Gaon, Kanpur Nagar, Uttar Pradesh - 208019</span>
             </li>
             <li>
               <span className='footer-contact-label'>Email</span>

@@ -337,6 +337,27 @@
   box-shadow: 0 15px 30px rgba(255, 107, 0, 0.3);
 }
 
+.premium-btn.outline {
+  background: #ffffff;
+  color: #555;
+  border: 1px solid #ff6b00;
+  width: auto;
+  padding: 12px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.premium-btn.outline:hover {
+  background: #ffffff;
+  color: #555;
+  border-color: #ff6b00;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
 /* Success State */
 .quotation-success {
   min-height: 100vh;

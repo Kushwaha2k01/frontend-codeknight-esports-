@@ -67,7 +67,7 @@
 
 .info-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
   padding: 25px;
   margin-bottom: 20px;
@@ -108,6 +108,20 @@
 .info-text p {
   color: #a0a0a0;
   font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.registration-address-box {
+  margin-top: 12px;
+  padding-top: 8px;
+}
+
+.reg-label {
+  color: #ff6b00 !important;
+  font-weight: 700;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
 /* Social Icons Row */
@@ -250,7 +264,7 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .contact-info-panel {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -276,7 +290,7 @@
   .section-title {
     font-size: 1.8rem;
   }
-  
+
   .section-subtitle {
     font-size: 1rem;
   }
