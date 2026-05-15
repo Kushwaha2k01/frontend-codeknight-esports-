@@ -71,7 +71,7 @@ const Gallery = () => {
     const getGamingConMedia = () => {
         try {
             const context = require.context('../assets/GAMINGCON', false, /\.(png|jpe?g|svg|mp4|webm)$/i);
-            const files = context.keys().map((key) => ({
+            return context.keys().map((key) => ({
                 type: /\.(mp4|webm)$/i.test(key) ? 'video' : 'image',
                 url: context(key)
             }));
