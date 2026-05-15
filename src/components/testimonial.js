@@ -42,11 +42,16 @@ const Testimonial = () => {
     const scrollRef = useRef(null);
 
     const handleScroll = () => {
-        if (window.innerWidth <= 768 && scrollRef.current) {
+        if (scrollRef.current) {
             const container = scrollRef.current;
             const cards = container.querySelectorAll('.testimonial-card');
             if (cards.length === 0) return;
-            const itemWidth = cards[0].offsetWidth + 20; // Updated margin logic
+            
+            // Calculate item width including margins
+            const style = window.getComputedStyle(cards[0]);
+            const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+            const itemWidth = cards[0].offsetWidth + margin;
+            
             const scrollPosition = container.scrollLeft + (container.offsetWidth / 2);
             const index = Math.floor(scrollPosition / itemWidth);
             setActiveIndex(index % testimonials.length);
@@ -57,7 +62,12 @@ const Testimonial = () => {
         if (scrollRef.current) {
             const container = scrollRef.current;
             const card = container.querySelector('.testimonial-card');
-            const itemWidth = card.offsetWidth + 20; // Card width + 20px margin (10px left + 10px right)
+            if (!card) return;
+            
+            const style = window.getComputedStyle(card);
+            const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+            const itemWidth = card.offsetWidth + margin;
+            
             container.scrollBy({ left: direction === 'left' ? -itemWidth : itemWidth, behavior: 'smooth' });
         }
     };

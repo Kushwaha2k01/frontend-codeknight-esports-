@@ -178,6 +178,8 @@
         touch-action: pan-x;
         /* Enable horizontal swipe gestures */
         padding: 0 20px 30px;
+        width: 100%;
+        pointer-events: auto;
     }
 
     .testimonial-track::-webkit-scrollbar {
