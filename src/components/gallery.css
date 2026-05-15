@@ -340,8 +340,9 @@
     background: rgba(255, 255, 255, 0.9);
     border: none;
     border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 50;
+    /* Z-index badhaya gaya hai */
     cursor: pointer;
     align-items: center;
     justify-content: center;
@@ -410,6 +411,9 @@
         width: 100%;
         scrollbar-width: none;
         /* Hide scrollbar for a clean look */
+        touch-action: pan-x;
+        /* Swipe gesture enable karne ke liye */
+        pointer-events: auto;
     }
 
     .gallery-nav-btn {

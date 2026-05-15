@@ -125,7 +125,8 @@
     border: none;
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 10;
+    z-index: 50;
+    /* Increased to match gallery section for better mobile interaction */
     color: #ff6b00;
     align-items: center;
     justify-content: center;
@@ -174,6 +175,8 @@
         scroll-snap-type: x mandatory;
         scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+        /* Enable horizontal swipe gestures */
         padding: 0 20px 30px;
     }
 
